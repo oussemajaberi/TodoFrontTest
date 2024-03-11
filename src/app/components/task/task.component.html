@@ -1,0 +1,42 @@
+<div class="container mt-5">
+  <h2 style="font-size: 25px;">Welcome To our Task List</h2>
+  <div *ngFor="let task of tasks">
+    <h3>{{ task.title }}</h3>
+    <p>{{ task.description }}</p>
+    <p>Priority: {{ task.priority }}</p>
+    <p>Due Date: {{ task.due_date }}</p>
+    <p>Status: {{ task.completed ? 'Completed' : 'Open' }}</p>
+    <button class="btn btn-info" *ngIf="task.completed == false" >Edit</button> <!-- Add this line -->
+    <button class="btn btn-secondary mx-3" *ngIf="task.completed == false" (click)="markAsCompleted(task.id)">Mark as Finished</button>
+    <button class="btn btn-danger" (click)="deleteTask(task.id)">Delete</button>
+    <hr />
+  </div>
+
+  <div class="Adding new tasks">
+    <h4>⚡ Add New Task</h4>
+    <form (ngSubmit)="insertTask()">
+      <div class="form-group">
+        <label for=""name>Title</label>
+        <input type="text" name="title" class="form-control" [(ngModel)]="task.title">
+      </div>
+      <div class="form-group">
+        <label for=""name>Description</label>
+        <input type="text" name="description" class="form-control" [(ngModel)]="task.description">
+      </div>
+      <div class="form-group">
+        <label for=""name>Priority</label>
+        <input type="number" name="priority" class="form-control" [(ngModel)]="task.priority">
+      </div>
+      <div class="form-group">
+        <label for=""name>Due_date</label>
+        <input type="text" name="Due_date" class="form-control" [(ngModel)]="task.due_date">
+      </div>
+
+      <button class="btn btn-success btn-sm mt-4 mx-2">Add New Task</button>
+      <button class="btn btn-dark btn-sm mt-4">Edit</button>
+
+    </form>
+
+  </div>
+
+</div>
